@@ -1,0 +1,14 @@
+Well done!
+
+4
+a) -0.5
+It's "EmailPromotion should not INCLUDE 1" and not "EmailPromotion should not BE EQUAL to 1".
+
+b) -0.5
+You were almost correct, just forgot to add filter by date. Correct answer:
+SELECT  TOP 3   *
+FROM Sales.SpecialOffer
+WHERE StartDate BETWEEN '2013-01-01' AND '2014-01-01'
+ORDER BY DiscountPct DESC
+
+Mark: 9
