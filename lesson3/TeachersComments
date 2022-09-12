@@ -1,0 +1,18 @@
+Well done!
+
+2.
+a) -0.25
+You missed a condition for NULL.
+
+b) -0.75
+You missed condition for names and that caused totally incorrrect result.
+
+c) -0.75
+WHERE clause is not correct. In the example it's said that you should use column from ON condition (FK)
+
+3.
+
+c) -1
+No solution
+
+Mark: 7
