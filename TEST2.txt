@@ -1,0 +1,25 @@
+--1
+SELECT t1.[BusinessEntityID], [FirstName], [LastName], [PhoneNumber]
+FROM [Person].[Person] t1
+	 JOIN [Person].[PersonPhone] t2  
+		ON t1.[BusinessEntityID] = t2.[BusinessEntityID]
+WHERE [PhoneNumber] LIKE '4_5%'
+--3
+SELECT [Color], MAX([StandardCost]) AS max_pr
+FROM [Production].[Product]
+GROUP BY [Color]
+
+--4
+Гостиница
+client (id_client, First_name, Last_name, pasport, adress)
+room (id_room, class, number_room, price)
+staff (id_staff, First_name, Last_name, pasport, adress)
+additional_service (id_as, name, price)
+receptionist (id_rec, First_name, Last_name, pasport, adress)
+food (id_cf, category_food)
+booking (id, id_client, id_room, id_staff, id_as, id_rec, id_cf, arrival_date, 
+date_dep)
+
+Вывести Имя Фамилию клиентов, которые проживали в номерах класса А, с 10.07.2022 по 10.07.2022.
+
+Вывести Имя Фамилию клиентов которые проживали с 1 сутки и заказывали завтрак в номер.
