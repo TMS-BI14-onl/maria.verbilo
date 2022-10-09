@@ -1,0 +1,4 @@
+--2
+SELECT A.[FirstName], A.[LastName], A.[ParentName], B.[FirstName] AS FatherFirstName, B.[ParentName] AS FatherParentName, B.[LastName] AS FatherLastName
+FROM [People] A JOIN [People] B ON A.ID=B.ID_Father
+WHERE a.FirstName='ִלטענטי'
