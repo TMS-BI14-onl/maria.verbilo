@@ -1,0 +1,57 @@
+﻿--1
+SELECT [ProductSubcategoryID],[Weight]
+FROM 
+(
+SELECT [ProductSubcategoryID],[Weight], MIN([Weight]) AS min_w
+FROM [Production].[Product]
+GROUP BY [ProductSubcategoryID], [Weight]
+) my
+WHERE min_w > 150
+
+--2
+--2.1
+SELECT TOP 1 [Name], [StandardCost]
+FROM [Production].[Product]
+ORDER BY [StandardCost] DESC
+
+--2.2
+SELECT [Name], [StandardCost]
+FROM [Production].[Product]
+WHERE [StandardCost] = (SELECT MAX([StandardCost]) as mc FROM [Production].[Product])
+
+--2.3
+SELECT [Name], [StandardCost]
+FROM
+(SELECT [Name], [StandardCost], RANK() OVER (ORDER BY [StandardCost] DESC) as r FROM [Production].[Product]) tab
+WHERE r=1
+
+--2.4
+SELECT [Name], [StandardCost]
+FROM
+(SELECT [Name], [StandardCost], MAX([StandardCost]) OVER () as mc FROM [Production].[Product]) as tab
+WHERE [StandardCost]=mc
+
+--3
+SELECT [Name]
+FROM [dbo.Store_dim]
+EXCEPT
+SELECT DISTINCT [Name]
+FROM [dbo.Sale_fct] s  JOIN [dbo.Store_dim] st ON s.ID_Store=e.ID_Store
+WHERE DATEDIFF(year, [OrderDate], GETDATE())<1
+
+--4
+SELECT sel.[Name], COUNT(sal.[SalerID]) AS cnt
+FROM [dbo.Sales_fct] sal JOIN [dbo.Seller_dim] sel ON sal.SellerID=sel.SellerID
+GROUP BY sel.[Name]
+WHERE DATEDIFF(year, [Date], GETDATE())<=15
+
+--5
+SELECT [category], COUNT(is_read) AS cnt
+FROM
+(
+SELECT u.[email], n.[category], n.[is_read]
+FROM [dbo.Users] u JOIN [dbo.Notification] n ON u.id_bigint=u.id_bigint
+WHERE n.[is_read]='FALSE'
+)
+WHERE [email]='alex@gmail.com'
+GROUP BY [category]
