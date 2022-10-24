@@ -55,3 +55,6 @@ WHERE n.[is_read]='FALSE'
 )
 WHERE [email]='alex@gmail.com'
 GROUP BY [category]
+
+
+MARK - 8
