@@ -1,0 +1,21 @@
+--1
+CREATE VIEW top50emp AS
+SELECT TOP 50 WITH TIES [First_name], [Last_name], SUM(Pnt) AS SPNT
+FROM
+(
+SELECT [First_name], [Last_name], COUNT(1) AS cnt, [OrderDate],
+	CASE WHEN COUNT(1)>10 THEN 3
+	  	 WHEN COUNT(1) BETWEEN 5 AND 10 THEN 2
+		 WHEN COUNT(1)<5 THEN 1
+		 END  Pnt
+FROM [dbo].[Employees] e  JOIN [dbo].[Sale] s ON e.[id_Employee]=s.[id_Employee]
+GROUP BY [First_name], [Last_name], [OrderDate]
+) TB
+GROUP BY [First_name], [Last_name]
+ORDER BY SPNT DESC
+
+SELECT *
+FROM [dbo].[top50emp]
+
+--2
+Я уже не делала его, так как мы обсуждали его на занятии, а я как халтурщица, делала дз после(((

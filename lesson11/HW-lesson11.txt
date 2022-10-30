@@ -1,0 +1,93 @@
+--3
+SELECT *
+FROM [dbo].[dataformerge]
+
+CREATE TABLE homework
+	(Function_name nvarchar(20),
+	 Function_count INT)
+
+SELECT *
+FROM [dbo].[homework]
+
+MERGE [dbo].[homework] AS Target
+USING (SELECT Alex FROM [dbo].[dataformerge]) AS Source
+ON (Target.Function_name=Source.Alex)
+WHEN MATCHED THEN 
+UPDATE SET Target.Function_count=+1
+WHEN NOT MATCHED AND Source.Alex IS NOT NULL
+THEN INSERT (Function_name, Function_count)
+VALUES (Source.Alex, 1);
+
+MERGE [dbo].[homework] AS Target
+USING (SELECT Barbara FROM [dbo].[dataformerge]) AS Source
+ON (Target.Function_name=Source.Barbara)
+WHEN MATCHED THEN 
+UPDATE SET Target.Function_count=+1
+WHEN NOT MATCHED AND Source.Barbara IS NOT NULL
+THEN INSERT (Function_name, Function_count)
+VALUES (Source.Barbara, 1);
+
+MERGE [dbo].[homework] AS Target
+USING (SELECT Chris FROM [dbo].[dataformerge]) AS Source
+ON (Target.Function_name=Source.Chris)
+WHEN MATCHED THEN 
+UPDATE SET Target.Function_count=+1
+WHEN NOT MATCHED
+THEN INSERT (Function_name, Function_count)
+VALUES (Source.Chris, 1);
+
+MERGE [dbo].[homework] AS Target
+USING (SELECT Donna FROM [dbo].[dataformerge]) AS Source
+ON (Target.Function_name=Source.Donna)
+WHEN MATCHED THEN 
+UPDATE SET Target.Function_count=+1
+WHEN NOT MATCHED
+THEN INSERT (Function_name, Function_count)
+VALUES (Source.Donna, 1);
+
+MERGE [dbo].[homework] AS Target
+USING (SELECT Elton FROM [dbo].[dataformerge]) AS Source
+ON (Target.Function_name=Source.Elton)
+WHEN MATCHED THEN 
+UPDATE SET Target.Function_count=+1
+WHEN NOT MATCHED
+THEN INSERT (Function_name, Function_count)
+VALUES (Source.Elton, 1);
+
+MERGE [dbo].[homework] AS Target
+USING (SELECT Fred FROM [dbo].[dataformerge]) AS Source
+ON (Target.Function_name=Source.Fred)
+WHEN MATCHED THEN 
+UPDATE SET Target.Function_count=+1
+WHEN NOT MATCHED
+THEN INSERT (Function_name, Function_count)
+VALUES (Source.Fred, 1);
+
+MERGE [dbo].[homework] AS Target
+USING (SELECT George FROM [dbo].[dataformerge]) AS Source
+ON (Target.Function_name=Source.George)
+WHEN MATCHED THEN 
+UPDATE SET Target.Function_count=+1
+WHEN NOT MATCHED
+THEN INSERT (Function_name, Function_count)
+VALUES (Source.George, 1);
+
+MERGE [dbo].[homework] AS Target
+USING (SELECT Harry FROM [dbo].[dataformerge]) AS Source
+ON (Target.Function_name=Source.Harry)
+WHEN MATCHED THEN 
+UPDATE SET Target.Function_count=+1
+WHEN NOT MATCHED
+THEN INSERT (Function_name, Function_count)
+VALUES (Source.Harry, 1);
+
+MERGE [dbo].[homework] AS Target
+USING (SELECT Irys FROM [dbo].[dataformerge]) AS Source
+ON (Target.Function_name=Source.Irys)
+WHEN MATCHED THEN 
+UPDATE SET Target.Function_count=+1
+WHEN NOT MATCHED
+THEN INSERT (Function_name, Function_count)
+VALUES (Source.Irys, 1);
+
+DROP TABLE [dbo].[homework]

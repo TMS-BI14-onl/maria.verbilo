@@ -1,0 +1,21 @@
+--1
+SELECT TOP 5 [ID], COUNT([ID_КНИГИ]) AS количество_продаж
+FROM [Продажи]
+GROUP BY [ID]
+
+--2
+SELECT
+CASE WHEN YEAR(GETDATE())-YEAR(П2.Дата рождения) between 18 and 30 THEN 'Adolescence'
+			WHEN YEAR(GETDATE())-YEAR(П2.Дата рождения) between 31 and 39 THEN 'Adults'
+			WHEN YEAR(GETDATE())-YEAR(П2.Дата рождения) between 40 and 55 THEN 'Elderly'
+			WHEN YEAR(GETDATE())-YEAR(П2.Дата рождения) between 55 and 60 THEN 'Senile'
+		ELSE 'Not found' END AS age_category
+FROM Покупатели П2
+JOIN
+(SELECT ID_книги, COUNT(ID) as cnt
+FROM Продажи
+GROUP BY ID_книги) П1
+ON П2.ID_покупателя=П1.ID_покупателя
+WHERE П1.Годы_покупок BETWEEN '2017-01-01' AND '2022-17-10'
+
+А дальше я понимаю что нужно использовать PIVOT, но я подвисла (((
